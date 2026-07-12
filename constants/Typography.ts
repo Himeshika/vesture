@@ -6,6 +6,7 @@ const Typography = {
   md: 17,
   lg: 20,
   xl: 24,
+  '2xl': 30,
   xxl: 30,
   display: 36,
 
@@ -22,6 +23,9 @@ const Typography = {
   normal: 0,
   wide: 0.5,
   wider: 1.0,
+
+  // ─── Font family ─────────────────────────────────────────────────────────────
+  primary: 'System',
 };
 
 export default Typography;

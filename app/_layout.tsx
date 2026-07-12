@@ -7,6 +7,7 @@ import { WishlistProvider } from '@/context/WishlistContext';
 import { useAuth } from '@/hooks/useAuth';
 import { StatusBar } from 'expo-status-bar';
 import LoadingSpinner from '@/components/LoadingSpinner';
+import { ErrorBoundary } from '@/components/ErrorBoundary';
 import Colors from '@/constants/Colors';
 
 // This component handles the routing logic once Auth is loaded
@@ -16,56 +17,69 @@ function RootNavigationHandler() {
   const router = useRouter();
 
   useEffect(() => {
+    console.log('[Nav] isLoading:', isLoading, '| user:', user?.email ?? 'none', '| role:', role, '| segment:', segments[0]);
+
     if (isLoading) return;
 
     const inAuthGroup = segments[0] === '(auth)';
+    const inCustomerGroup = segments[0] === '(customer)';
+    const inAdminGroup = segments[0] === '(admin)';
 
     if (!user) {
       if (!inAuthGroup) {
-        // Not logged in and not in auth screens, redirect to login
+        console.log('[Nav] No user → redirecting to login');
         router.replace('/(auth)/login');
       }
-    } else if (user) {
+    } else {
       // User is logged in
       if (inAuthGroup) {
-        // From auth screen, redirect based on role
         if (role === 'admin') {
+          console.log('[Nav] Admin user on auth screen → redirecting to admin');
           router.replace('/(admin)');
         } else {
+          console.log('[Nav] Customer user on auth screen → redirecting to customer');
           router.replace('/(customer)');
         }
-      } else if (segments[0] !== '(admin)' && role === 'admin') {
+      } else if (!inAdminGroup && role === 'admin') {
+        console.log('[Nav] Admin user not in admin group → redirecting to admin');
         router.replace('/(admin)');
-      } else if (segments[0] !== '(customer)' && role === 'customer') {
+      } else if (!inCustomerGroup && !inAdminGroup) {
+        // On index or unknown route — push to customer by default
+        console.log('[Nav] User on unknown route → redirecting to customer');
         router.replace('/(customer)');
       }
     }
   }, [user, role, isLoading, segments, router]);
 
   if (isLoading) {
+    console.log('[Nav] Auth loading...');
     return <LoadingSpinner fullScreen />;
   }
 
   return (
     <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: Colors.background } }}>
+      <Stack.Screen name="index" options={{ headerShown: false }} />
       <Stack.Screen name="(auth)" options={{ headerShown: false }} />
       <Stack.Screen name="(customer)" options={{ headerShown: false }} />
       <Stack.Screen name="(admin)" options={{ headerShown: false }} />
+      <Stack.Screen name="+not-found" options={{ title: 'Not Found' }} />
     </Stack>
   );
 }
 
 export default function RootLayout() {
   return (
-    <AuthProvider>
-      <ItemsProvider>
-        <RentalsProvider>
-          <WishlistProvider>
-            <StatusBar style="light" />
-            <RootNavigationHandler />
-          </WishlistProvider>
-        </RentalsProvider>
-      </ItemsProvider>
-    </AuthProvider>
+    <ErrorBoundary>
+      <AuthProvider>
+        <ItemsProvider>
+          <RentalsProvider>
+            <WishlistProvider>
+              <StatusBar style="light" />
+              <RootNavigationHandler />
+            </WishlistProvider>
+          </RentalsProvider>
+        </ItemsProvider>
+      </AuthProvider>
+    </ErrorBoundary>
   );
 }

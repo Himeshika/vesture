@@ -8,8 +8,8 @@ import * as ImageManipulator from 'expo-image-manipulator';
 //    - Folder: leave blank
 // 4. Copy the Cloud Name and preset name below
 
-const CLOUDINARY_CLOUD_NAME = 'YOUR_CLOUD_NAME';
-const CLOUDINARY_UPLOAD_PRESET = 'YOUR_UNSIGNED_UPLOAD_PRESET';
+const CLOUDINARY_CLOUD_NAME = 'ddrx80zdn';
+const CLOUDINARY_UPLOAD_PRESET = 'vesture';
 const CLOUDINARY_UPLOAD_URL = `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`;
 
 export const generateUuid = () => {

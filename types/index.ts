@@ -116,7 +116,7 @@ export interface ItemFormData {
   images: string[];
   pricePerDay: string;
   securityDeposit: string;
-  ownerNotes: string;
+  ownerNotes?: string;
 }
 
 export interface BlockedDateRange {

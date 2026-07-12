@@ -50,6 +50,18 @@ export default function AdminTabsLayout() {
           tabBarIcon: ({ color }) => <Feather name="rotate-ccw" size={24} color={color} />,
         }}
       />
+      <Tabs.Screen
+        name="profile"
+        options={{
+          title: 'Profile',
+          tabBarIcon: ({ color }) => <Feather name="user" size={24} color={color} />,
+        }}
+      />
+      {/* Non-tab push screens – hidden from tab bar */}
+      <Tabs.Screen name="add-item" options={{ href: null }} />
+      <Tabs.Screen name="item/[id]" options={{ href: null }} />
+      <Tabs.Screen name="rental/[id]" options={{ href: null }} />
+      <Tabs.Screen name="inspection/[id]" options={{ href: null }} />
     </Tabs>
   );
 }

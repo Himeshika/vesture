@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tabs } from 'expo-router';
+import { Tabs, Stack } from 'expo-router';
 import { Feather } from '@expo/vector-icons';
 import Colors from '@/constants/Colors';
 import Typography from '@/constants/Typography';
@@ -30,6 +30,13 @@ export default function CustomerTabsLayout() {
         }}
       />
       <Tabs.Screen
+        name="search"
+        options={{
+          title: 'Search',
+          tabBarIcon: ({ color }) => <Feather name="search" size={24} color={color} />,
+        }}
+      />
+      <Tabs.Screen
         name="wishlist"
         options={{
           title: 'Wishlist',
@@ -48,6 +55,13 @@ export default function CustomerTabsLayout() {
         options={{
           title: 'Profile',
           tabBarIcon: ({ color }) => <Feather name="user" size={24} color={color} />,
+        }}
+      />
+      {/* Non-tab screens (push-style) */}
+      <Tabs.Screen
+        name="edit-profile"
+        options={{
+          href: null, // hide from tab bar
         }}
       />
     </Tabs>

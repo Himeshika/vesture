@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginTop: Spacing.xl,
-    marginBottom: Spacing.2xl,
+    marginBottom: Spacing['2xl'],
   },
   avatar: {
     width: 80,
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   initials: {
-    fontSize: Typography.2xl,
+    fontSize: Typography['2xl'],
     color: Colors.background,
     fontWeight: Typography.bold,
   },
@@ -119,6 +119,6 @@ const styles = StyleSheet.create({
     color: Colors.textSecondary,
   },
   logoutWrapper: {
-    marginTop: Spacing.2xl,
+    marginTop: Spacing['2xl'],
   },
 });

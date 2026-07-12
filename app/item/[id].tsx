@@ -226,7 +226,7 @@ const styles = StyleSheet.create({
     marginBottom: Spacing.sm,
   },
   name: {
-    fontSize: Typography.2xl,
+    fontSize: Typography['2xl'],
     fontWeight: Typography.bold,
     color: Colors.textPrimary,
     marginBottom: 4,
@@ -240,7 +240,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
   },
   price: {
-    fontSize: Typography.2xl,
+    fontSize: Typography['2xl'],
     fontWeight: Typography.bold,
     color: Colors.accent,
   },

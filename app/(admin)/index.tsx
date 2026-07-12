@@ -132,7 +132,7 @@ export default function AdminDashboardScreen() {
 const styles = StyleSheet.create({
   container: {
     padding: Spacing.screenPadding,
-    paddingBottom: Spacing.2xl,
+    paddingBottom: Spacing['2xl'],
   },
   header: {
     marginBottom: Spacing.xl,

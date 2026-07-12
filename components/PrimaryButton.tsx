@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity, Text, ActivityIndicator, StyleSheet, ViewStyle } from 'react-native';
+import { TouchableOpacity, Text, ActivityIndicator, StyleSheet, ViewStyle, StyleProp } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import Colors from '@/constants/Colors';
 import Typography from '@/constants/Typography';
@@ -12,7 +12,7 @@ interface PrimaryButtonProps {
   loading?: boolean;
   disabled?: boolean;
   icon?: keyof typeof Feather.glyphMap;
-  style?: ViewStyle;
+  style?: StyleProp<ViewStyle>;
 }
 
 export default function PrimaryButton({
